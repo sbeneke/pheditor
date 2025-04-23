@@ -27,6 +27,7 @@ define('EDITOR_THEME', ''); // e.g. monokai
 define('DEFAULT_DIR_PERMISSION', 0755);
 define('DEFAULT_FILE_PERMISSION', 0644);
 define('LOCAL_ASSETS', false); // if true you should run `npm i` to download required libraries
+define('SITE_TITLE', "My-Editor"); // Site title
 
 $asset_versions = [
     'bootstrap' => '5.3.3',
@@ -184,7 +185,7 @@ if (empty(PASSWORD) === false && (isset($_SESSION['pheditor_admin'], $_SESSION['
         die('Your session has expired.');
     }
 
-    die('<title>Pheditor</title><form method="post"><div style="text-align:center"><h1><a href="http://github.com/pheditor/pheditor" target="_blank" title="PHP file editor" style="color:#444;text-decoration:none" tabindex="3">Pheditor</a></h1>' . (isset($error) ? '<p style="color:#dd0000">' . $error . '</p>' : null) . '<input id="pheditor_password" name="pheditor_password" type="password" value="" placeholder="Password&hellip;" tabindex="1"><br><br><input type="submit" value="Login" tabindex="2"></div></form><script type="text/javascript">document.getElementById("pheditor_password").focus();</script>');
+    die('<title>' . SITE_TITLE . '</title><form method="post"><div style="text-align:center"><h1><a href="http://github.com/pheditor/pheditor" target="_blank" title="PHP file editor" style="color:#444;text-decoration:none" tabindex="3">' . SITE_TITLE . '</a></h1>' . (isset($error) ? '<p style="color:#dd0000">' . $error . '</p>' : null) . '<input id="pheditor_password" name="pheditor_password" type="password" value="" placeholder="Password&hellip;" tabindex="1"><br><br><input type="submit" value="Login" tabindex="2"></div></form><script type="text/javascript">document.getElementById("pheditor_password").focus();</script>');
 }
 
 if (isset($_GET['logout'])) {
@@ -699,7 +700,7 @@ $_SESSION['pheditor_token'] = bin2hex(random_bytes(32));
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pheditor</title>
+    <title><?= SITE_TITLE ?></title>
     <link id="favicon" rel="shortcut icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAaVBMVEUAAAAoLTgqLzckLzsmLDUrMDYpLzcqMDooLjcqLjgpLjUpLjcpLTYkLDgrMTYiKS8pMDonKzopMTYxNjwmKzkiJzkjJjMmKzgmLzgnLjUwMTktNDYnKj8pLzcaHCIWGRwnLjkoLjgeJD+rVehhAAAAI3RSTlMAbUFbDldiTVAnc19ZVEUFempkYx0UCYd1PDcwC5RORyMjGhuz37YAAACISURBVBjTbcxXCsMwEATQsb1SrO4muabe/5BZGQKC+P0MDLuDP6SrwjJB9nWhMRgIpRvki+MT4H3MA1woKG0CRnp2G6iFJDlPwD4CtOjAF7Gu/AGhENbhkc4XjH0cAKGPc+MNtm/IctEnlFq4rmHONS5nZbmzQoh7Z2YOK9LvUmFFgUzr7YRLXy5UBfV2oz6WAAAAAElFTkSuQmCC">
 
     <?php foreach ($assets[LOCAL_ASSETS ? 'local' : 'cdn']['css'] as $value) : ?>
@@ -1914,7 +1915,7 @@ $_SESSION['pheditor_token'] = bin2hex(random_bytes(32));
 
         <div class="row p-3">
             <div class="col-md-3">
-                <h1><a href="http://github.com/pheditor/pheditor" target="_blank" title="Pheditor <?= VERSION ?>">Pheditor</a></h1>
+                <h1><a href="http://github.com/pheditor/pheditor" target="_blank" title="Pheditor <?= VERSION ?>"><?= SITE_TITLE ?></a></h1>
             </div>
             <div class="col-md-9">
                 <div class="float-start">
